@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+const nameCompleate = `${cookies.get('nombre')} ${cookies.get('apellido_paterno')} ${cookies.get('apellido_materno')}`;
+const username = cookies.get('username');
+const email = cookies.get('email');
 
 const logout = () => {
   cookies.remove('id', { path: '/' });
@@ -14,10 +17,6 @@ const logout = () => {
   window.location.href = './login';
 }
 
-const nameCompleate = cookies.get('nombre') + cookies.get('apellido_paterno') + cookies.get('apellido_materno');
-const username = cookies.get('username');
-const email = cookies.get('email');
-
 const Hoteles = () => {
 
   return (
@@ -25,7 +24,7 @@ const Hoteles = () => {
       <div className="containerSecondary">
         <h2>Hello.Salut.Hola</h2>
         <br />
-        <h5>{nameCompleate}</h5>
+        <h3>{nameCompleate}</h3>
         <p>Your user name is <b>{` ${username}`}</b> and email is <b>{` ${email}`}</b>`</p>
         <br />
         <button className="btn btn-danger" onClick={logout}>Logout</button>

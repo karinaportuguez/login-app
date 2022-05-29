@@ -3,30 +3,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import md5 from 'md5';
 import Cookies from 'universal-cookie';
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 const baseUrl = "http://localhost:3001/usuarios";
 const cookies = new Cookies();
 
 const Login = () => {
 
-  const [datos, setDatos] = useState({
+  const [dates, setDates] = useState({
     email: '',
     password: '',
   })
 
   const handleInputChange = (event) => {
-    //console.log(event.target.name)
-    //console.log(event.target.value)
-    setDatos({
-      ...datos,
+    setDates({
+      ...dates,
       [event.target.name]: event.target.value
     })
   }
 
 
-  const loginUser = async (event) => {
-    await axios.get(baseUrl, { params: { email: datos.email, password: md5(datos.password) } })
+  const loginUser = async () => {
+    await axios.get(baseUrl, { params: { email: dates.email, password: md5(dates.password) } })
       .then(response => {
         return response.data;
       })
@@ -48,7 +46,6 @@ const Login = () => {
       .catch(error => {
         console.log(error);
       })
-
   }
 
   return (
