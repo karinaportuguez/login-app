@@ -1,4 +1,5 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -13,19 +14,23 @@ const logout = () => {
   window.location.href = './login';
 }
 
-console.log('ID:');
-console.log('Apellido paterno: ' + cookies.get('apellido_paterno'));
-console.log('Apellido materno: ' + cookies.get('apellapellido_materno'));
-console.log('Correo: ' + cookies.get('email'));
-console.log('Username: ' + cookies.get('username'));
+const nameCompleate = cookies.get('nombre') + cookies.get('apellido_paterno') + cookies.get('apellido_materno');
+const username = cookies.get('username');
+const email = cookies.get('email');
+
 const Hoteles = () => {
 
   return (
-    <>
-      <h1>Hello.Salut.Hola</h1>
-      <br />
-      <button className="btn btn-danger" onClick={logout}>Logout</button>
-    </>
+    <div className="containerPrimary">
+      <div className="containerSecondary">
+        <h2>Hello.Salut.Hola</h2>
+        <br />
+        <h5>{nameCompleate}</h5>
+        <p>Your user name is <b>{` ${username}`}</b> and email is <b>{` ${email}`}</b>`</p>
+        <br />
+        <button className="btn btn-danger" onClick={logout}>Logout</button>
+      </div>
+    </div >
   );
 
 };

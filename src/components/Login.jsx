@@ -38,6 +38,7 @@ const Login = () => {
           cookies.set('apellido_materno', reply.apellido_materno, { path: "/" });
           cookies.set('nombre', reply.nombre, { path: "/" });
           cookies.set('username', reply.username, { path: "/" });
+          cookies.set('email', reply.email, { path: "/" });
           alert(`Bienvenido ${reply.nombre} ${reply.apellido_paterno}`);
           window.location.href = "./hoteles";
         } else {
