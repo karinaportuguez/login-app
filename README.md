@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Prueba técnica Noktos - Fronted 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenido a nuestra prueba técnica, el objetivo es evaluar tus conocimientos respecto a React, tu dominio sobre el lenguaje Javascript y el consumo de API's REST con Fetch o Axios. 
 
-## Available Scripts
+## Puntos a considerar: 
 
-In the project directory, you can run:
+● El tiempo de la prueba es de aproximadamente 3 horas, no es necesario que termines todo el ejercicio pero sí es importante que demuestres tus conocimientos.
 
-### `npm start`
+● Deberás considerar cosas como SOLID y DRY para la realización de tu ejercicio, no es necesario que apliques todo al pie de la letra pero si lo que consideres necesario para mantener la calidad del código y la escalabilidad. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+● Puedes utilizar React bootstrap o alguna otra librería de CSS o componentes que te facilite el diseño. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+● Puedes acceder a documentación para aclarar dudas.
 
-### `npm test`
+Ruta base: https://desarrollo.api.noktos.com/api 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Deberás generar un formulario mediante el cual puedas iniciar sesión y almacenar el token devuelto para utilizarlo más adelante.
 
-### `npm run build`
+**Ruta**
+ /login 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Método HTTP** 
+POST 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Headers**
+{ 
+“Accept”: “application/json”, 
+“Content-Type”: “application/json” 
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Body** 
+{ 
+"email":"string", 
+"password":"string", "sistema": 2 
+}
 
-### `npm run eject`
+**Respuesta**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+{ 
+"res": bool, 
+"token":"string", 
+"message":"string" 
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usuario de prueba 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+"email":"demosistemas@yopmail.com" 
+"password": "Prueba@1" 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Consultar un API para obtener una lista de hoteles y mostrarlo en una tabla de HTML, crear un botón para que mediante un evento, se muestre el detalle del hotel en un modal
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Ruta**  
+/admin/hosts/50
 
-### Code Splitting
+**Authorization**
+Bearer
+{token}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Método**
+GET 
 
-### Analyzing the Bundle Size
+**Body**
+N/A 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Respuesta**
+{ 
+"host": Array, 
+}
