@@ -3,8 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
-const nameCompleate = `${cookies.get('nombre')} ${cookies.get('apellido_paterno')} ${cookies.get('apellido_materno')}`;
-const username = cookies.get('username');
 const email = cookies.get('email');
 
 const logout = () => {
@@ -24,8 +22,8 @@ const Hoteles = () => {
       <div className="containerSecondary">
         <h2>Hello.Salut.Hola</h2>
         <br />
-        <h3>{nameCompleate}</h3>
-        <p>Your user name is <b>{` ${username}`}</b> and email is <b>{` ${email}`}</b>`</p>
+        <h3>Bienvenido a N4B</h3>
+        <p>Your email is <b>{` ${email}`}</b>`</p>
         <br />
         <button className="btn btn-danger" onClick={logout}>Logout</button>
       </div>

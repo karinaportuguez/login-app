@@ -1,19 +1,32 @@
 import '../css/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import md5 from 'md5';
 import Cookies from 'universal-cookie';
 import React, { useState } from 'react';
 
-const baseUrl = "http://localhost:3001/usuarios";
+const baseUrl = "https://desarrollo.api.noktos.com/api/login";
 const cookies = new Cookies();
 
 const Login = () => {
 
+  const config = {
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    }
+  };
+
   const [dates, setDates] = useState({
     email: '',
     password: '',
+    sistema: 2,
   })
+
+  const data = {
+    email: dates.email,
+    password: dates.password,
+    sistema: 2
+  }
 
   const handleInputChange = (event) => {
     setDates({
@@ -22,22 +35,18 @@ const Login = () => {
     })
   }
 
-
   const loginUser = async () => {
-    await axios.get(baseUrl, { params: { email: dates.email, password: md5(dates.password) } })
+    await axios.post(baseUrl, data, config)
       .then(response => {
+        console.log(response.data);
         return response.data;
       })
       .then(response => {
-        if (response.length > 0) {
-          var reply = response[0];
-          cookies.set('id', reply.id, { path: "/" });
-          cookies.set('apellido_paterno', reply.apellido_paterno, { path: "/" });
-          cookies.set('apellido_materno', reply.apellido_materno, { path: "/" });
-          cookies.set('nombre', reply.nombre, { path: "/" });
-          cookies.set('username', reply.username, { path: "/" });
-          cookies.set('email', reply.email, { path: "/" });
-          alert(`Bienvenido ${reply.nombre} ${reply.apellido_paterno}`);
+        if (response.res == true & response.message == 'Bienvenido a N4B') {
+          const token = response.token;
+          cookies.set('token', token, { path: "/" });
+          cookies.set('email', data.email, { path: "/" });
+          alert(`${response.message}`);
           window.location.href = "./hoteles";
         } else {
           alert('El usuario o la contraseña no son correctos');
@@ -71,7 +80,7 @@ const Login = () => {
               onChange={handleInputChange}
             />
             <br />
-            <button className="btn btn-primary" onClick={loginUser}>Iniciar Sesión</button>
+            <button className="btn btn-primary" onClick={loginUser} >Iniciar Sesión</button>
           </div>
         </div>
       </div>
